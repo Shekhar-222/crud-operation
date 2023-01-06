@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS student CRUD using HTML Form and table</title>
+    <style>
+        form{
+          
+            text-align: center;
+            /* border: 5px solid blue; */
+            height: 50px;
+            line-height: 50px;
+            
+        }
+        form >input{
+            font-size: large;
+            padding: 8px;
+        }
+        table{
+            width: 100%;
+            text-align: center;
+            border: 2px solid black;
+            height: 50px;
+            line-height: 50px;
+
+        }
+       
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <input name="name" type="text" placeholder="Enter your Name" />
+      <input name="surname" type="text" placeholder="Enter your Surnme" />
+      <input name="address" type="text" placeholder="Enter your Address" />
+      <input type="button" value="save" onclick="submitData()" />
+    </form>
+    <hr>
+    <table border="1" id="myTbale">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Shekhar</td>
+          <td>Shinde</td>
+          <td>Pune</td>
+          <td>
+            <button>View</button>
+            <button>Edit</button>
+            <button>Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      //There are two way to define funcion
+      //1. old
+      function shekhat() {
+        alert("shekhar");
+      }
+
+      //2. New way Fat arrow function
+
+      let n = document.querySelector('input[name="name"]');
+      let sn = document.querySelector('input[name="surname"]');
+      let addr = document.querySelector('input[name="address"]');
+
+      let tbdy = document.querySelector("table#myTbale tbody");
+
+      let submitData = () => {
+        alert("want to submit data ?");
+        console.log(n.value);
+        console.log(sn.value);
+        console.log(addr.value);
+
+        console.log(tbdy);
+        tbdy.innerHTML += `<tr>
+                    <td>${n.value}</td>
+                    <td>${sn.value}</td>
+                    <td>${addr.value}</td>
+                    <td>
+                        <button>View</button>
+                        <button>Edit</button>
+                        <button onClick="deleteElement(this)">Delete</button>
+                    </td>
+                </tr> `; //append techmique
+        n.value = sn.value = addr.value = "";
+      };
+
+      let deleteElement = (z) => {
+        // alert("Delete element")
+        // console.log(z);
+        confirm("you want to delete?");
+        z.closest("tr").remove();
+        console.log(z.closest("tr"));
+      };
+    </script>
+  </body>
+</html>
